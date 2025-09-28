@@ -1,0 +1,12 @@
+[
+  {
+    "action": "delete",
+    "tool": {},
+    "id": 1
+  },
+  {
+    "action": "delete",
+    "tool": {},
+    "id": 2
+  }
+]

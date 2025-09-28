@@ -1,0 +1,38 @@
+[
+    {
+      "id": 1,
+      "question": "Wie richte ich einen Netzwerkordner ein?",
+      "answer": "Geben Sie im Menü „Netzwerkpfade“ die Computer-Nummer oder den Servernamen ein, klicken Sie auf „Testen“ und dann auf „Öffnen“, um den Explorer mit dem Pfad zu starten.",
+      "tags": ["Netzwerk", "Explorer", "Freigabe"],
+      "favorite": false
+    },
+    {
+      "id": 2,
+      "question": "Wie füge ich einen neuen Drucker hinzu?",
+      "answer": "Wechseln Sie ins Drucker-Modul, klicken Sie auf „+ Drucker hinzufügen“, geben Sie Modell und Pfad zur Anleitung ein oder fügen Sie per STRG+V einen Screenshot der Einrichtung ein.",
+      "tags": ["Drucker", "Anleitung", "Konfiguration"],
+      "favorite": false
+    },
+    {
+      "id": 3,
+      "question": "Wie erstelle ich ein neues Ticket?",
+      "answer": "Öffnen Sie das Tickets-Modul, geben Sie die Pflichtfelder „Telefonnummer“ und „PKZ“ ein, ergänzen Sie optional Geräte- und Rauminformationen und klicken Sie auf „Speichern“. Ihr Ticket wird lokal im tickets.json abgelegt.",
+      "tags": ["Ticket", "Support", "Anleitung"],
+      "favorite": false
+    },
+    {
+      "id": 4,
+      "question": "Wie nutze ich die Textverbesserungsfunktion?",
+      "answer": "Wechseln Sie zum Textverbesserungs-Tab, fügen Sie Ihren Rohtext per STRG+V ein und klicken Sie auf „Verbessern“. Der überarbeitete Text erscheint sofort im Vorschaufenster.",
+      "tags": ["Text", "Verbesserung", "STRG+V"],
+      "favorite": false
+    },
+    {
+      "id": 5,
+      "question": "Wie teste ich Ping und NSLookup?",
+      "answer": "Im Netzwerk-Modul geben Sie eine IP-Adresse oder einen Hostnamen ein und klicken auf „Ping“ oder „NSLookup“. Die Ausgabe erscheint direkt im unteren Fensterbereich.",
+      "tags": ["Netzwerk", "Ping", "NSLookup"],
+      "favorite": false
+    }
+  ]
+  

@@ -1,0 +1,73 @@
+[
+    {
+      "id": 1,
+      "group": "Kollegen",
+      "name": "Max Mustermann",
+      "phone": "0123-4567",
+      "department": "IT"
+    },
+    {
+      "id": 2,
+      "group": "MIT",
+      "name": "Dr. Med Muster",
+      "phone": "0987-6543",
+      "department": "Med IT"
+    },
+    {
+      "id": 3,
+      "group": "Vertrieb",
+      "name": "Anna Schubert",
+      "phone": "030-123456",
+      "department": "Sales"
+    },
+    {
+      "id": 4,
+      "group": "Support",
+      "name": "Lukas Weber",
+      "phone": "030-234567",
+      "department": "Customer Support"
+    },
+    {
+      "id": 5,
+      "group": "IT",
+      "name": "Sofia Neumann",
+      "phone": "030-345678",
+      "department": "DevOps"
+    },
+    {
+      "id": 6,
+      "group": "HR",
+      "name": "Thomas Becker",
+      "phone": "030-456789",
+      "department": "Human Resources"
+    },
+    {
+      "id": 7,
+      "group": "Marketing",
+      "name": "Clara Fischer",
+      "phone": "030-567890",
+      "department": "Marketing"
+    },
+    {
+      "id": 8,
+      "group": "Leitung",
+      "name": "Dr. Erika König",
+      "phone": "030-678901",
+      "department": "Management"
+    },
+    {
+      "id": 9,
+      "group": "Logistik",
+      "name": "Jan Müller",
+      "phone": "030-789012",
+      "department": "Logistics"
+    },
+    {
+      "id": 10,
+      "group": "Entwicklung",
+      "name": "Miriam Braun",
+      "phone": "030-890123",
+      "department": "Engineering"
+    }
+  ]
+

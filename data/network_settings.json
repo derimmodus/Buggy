@@ -1,0 +1,9 @@
+{
+  "network_path_template": "\\\\server\\share\\{device_id}",
+  "network_scan_timeout": 1,
+  "default_credentials": {
+    "username": "",
+    "password": ""
+  },
+  "network_shortcuts": []
+}

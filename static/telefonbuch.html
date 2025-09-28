@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telefonbuch - HelpTool</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css' rel='stylesheet' />
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #222;
+            min-height: 100vh;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-content {
+            height: 100%;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .header h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(45deg, #2196F3, #4CAF50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 8px 420px;
+            gap: 0;
+            align-items: stretch;
+        }
+        .phonebook-section, .calendar-section {
+            background: #fff;
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #e0e7ef;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #e0e7ef;
+        }
+        .section-header h2 {
+            font-size: 1.5rem;
+            margin-left: 10px;
+            color: #2196F3;
+        }
+        .search-container {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: none;
+            border-radius: 25px;
+            background: #f5f7fa;
+            color: #222;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 1px 4px rgba(33,150,243,0.08);
+        }
+        .search-input:focus {
+            background: #e3f2fd;
+            box-shadow: 0 8px 25px rgba(33,150,243,0.12);
+        }
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #2196F3;
+        }
+        .add-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #2196F3, #4CAF50);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(33,150,243,0.08);
+        }
+        .add-btn:hover {
+            background: linear-gradient(45deg, #1976D2, #388E3C);
+        }
+        .contacts-container {
+            background: #f5f7fa;
+            border-radius: 15px;
+            padding: 15px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .contact-item {
+            background: linear-gradient(135deg, #e3f2fd 0%, #c8e6c9 100%);
+            color: #222;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 1px 4px rgba(33,150,243,0.08);
+        }
+        .contact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .contact-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .contact-actions {
+            display: flex;
+            gap: 10px;
+        }
+        .action-btn {
+            background: #e3f2fd;
+            border: none;
+            color: #2196F3;
+            padding: 5px 8px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .action-btn:hover {
+            background: #bbdefb;
+        }
+        .contact-info {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .calendar-section {
+            min-width: 350px;
+        }
+        .vertical-divider {
+            width: 8px;
+            background: #fff;
+            border-radius: 4px;
+            min-height: 100%;
+            height: 100%;
+            box-shadow: 0 0 8px rgba(0,0,0,0.08);
+            margin: 0;
+        }
+        #fc-calendar {
+            min-height: 400px;
+            border: 2px dashed #2196F3;
+            background: #f5f7fa;
+        }
+        .fc {
+            background: #f5f7fa;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .fc-event {
+            background: linear-gradient(45deg, #FF6B6B, #4ECDC4) !important;
+            border: none !important;
+            border-radius: 5px !important;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+        }
+        .empty-state i {
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background: linear-gradient(135deg, #e3f2fd 0%, #c8e6c9 100%);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            animation: modalSlide 0.3s ease;
+        }
+        @keyframes modalSlide {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            color: #2196F3;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        .close:hover {
+            opacity: 0.7;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2196F3;
+            font-weight: bold;
+        }
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #f5f7fa;
+            color: #222;
+            font-size: 16px;
+            outline: none;
+            box-shadow: 0 1px 4px rgba(33,150,243,0.08);
+        }
+        .form-input:focus {
+            background: #e3f2fd;
+        }
+        .save-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #2196F3, #4CAF50);
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .save-btn:hover {
+            background: linear-gradient(45deg, #1976D2, #388E3C);
+        }
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .calendar-section {
+                min-width: unset;
+            }
+        }
+        /* Custom Scrollbar */
+        .contacts-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .contacts-container::-webkit-scrollbar-track {
+            background: #e3f2fd;
+            border-radius: 4px;
+        }
+        .contacts-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #2196F3, #4CAF50);
+            border-radius: 4px;
+        }
+        .module-header.phonebook-termine-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 40px;
+            background: #fff;
+            border-radius: 15px 15px 0 0;
+            padding: 18px 30px 10px 30px;
+            margin-bottom: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .header-left h2 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: #2196F3;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header-right h2 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-address-book"></i> HelpTool Dashboard</h1>
+            <p>Verwalten Sie Ihre Kontakte und Termine an einem Ort</p>
+        </div>
+        <div class="module-header phonebook-termine-header">
+            <div class="header-left">
+                <h2>Telefonbuch</h2>
+                <!-- Search and add moved below the contacts list -->
+            </div>
+            <div class="header-right">
+                <h2><i class="fas fa-calendar-alt"></i> Termine</h2>
+            </div>
+        </div>
+        <div class="main-content" style="margin-top:0;">
+            <div class="phonebook-section">
+                <div class="section-header">
+                    <i class="fas fa-users fa-2x"></i>
+                    <h2>Telefonbuch</h2>
+                </div>
+                <div class="contacts-container">
+                    <div id="favorites-list" style="margin-bottom:12px;"></div>
+                    <div id="contacts-list">
+                        <div class="empty-state">
+                            <i class="fas fa-address-book fa-4x"></i>
+                            <h3>Keine Kontakte vorhanden</h3>
+                            <p>Klicken Sie auf "Neuer Kontakt" um loszulegen</p>
+                        </div>
+                    </div>
+                    <!-- Search and Add controls placed directly below the contact cards -->
+                    <div class="phonebook-controls" style="margin-top:8px; display:flex; gap:8px; align-items:center;">
+                        <input type="text" id="phonebook-search" placeholder="Suchen..." class="form-control" />
+                        <button id="add-contact-btn" class="btn btn-primary"><i class="fas fa-plus"></i> Kontakt hinzufügen</button>
+                    </div>
+                    <div id="contacts-pagination" style="margin-top:12px; display:flex; align-items:center; justify-content:flex-end;"></div>
+                </div>
+
+                <!-- legacy search/add below contacts removed; controls above favorites are used -->
+            </div>
+            <div class="vertical-divider"></div>
+            <div class="calendar-section">
+                <div class="section-header">
+                    <i class="fas fa-calendar-alt fa-2x"></i>
+                    <h2>Terminkalender</h2>
+                </div>
+                <div id="fc-calendar" class="fc-container" style="min-height: 400px; border-radius: 10px; padding: 10px;">
+                    <div id="calendar-placeholder" style="color: #888; text-align: center; padding: 40px 0; font-size: 1.2rem;">Kalender wird geladen ...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal für neuen Kontakt -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2><i class="fas fa-user-plus"></i> Kontakt hinzufügen</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label class="form-label">Name *</label>
+                    <input type="text" id="contact-name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Telefonnummer *</label>
+                    <input type="tel" id="contact-phone" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">E-Mail</label>
+                    <input type="email" id="contact-email" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Firma</label>
+                    <input type="text" id="contact-company" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Notizen</label>
+                    <input type="text" id="contact-notes" class="form-input">
+                </div>
+                <button type="submit" class="save-btn">
+                    <i class="fas fa-save"></i> Kontakt speichern
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- Modal für Kalender-Termin-Erstellung -->
+    <div id="calendar-event-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeCalendarEventModal()">&times;</span>
+            <h2><i class="fas fa-calendar-plus"></i> Termin erstellen</h2>
+            <form id="calendar-event-form">
+                <div class="form-group">
+                    <label class="form-label">Titel *</label>
+                    <input type="text" id="event-title" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Kontakt</label>
+                    <input type="text" id="event-contact" class="form-input" autocomplete="off">
+                    <div id="event-contact-list" class="autocomplete-list"></div>
+                </div>
+                <button type="button" id="save-calendar-event-btn" class="save-btn">
+                    <i class="fas fa-save"></i> Termin speichern
+                </button>
+            </form>
+        </div>
+    </div>
+    <!-- JS-Skripte am Ende für korrekte Initialisierung -->
+</body>
+<script src="telefonbuch.js"></script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>HelpTool Kalender</title>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <style>
+        body { font-family: Arial, sans-serif; background: #f7f7f7; margin: 0; }
+        .container { display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; }
+        .calendar-box { background: #fff; padding: 32px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-top: 48px; }
+        h2 { margin-bottom: 24px; color: #2196F3; }
+        #fc-calendar { max-width: 900px; margin: 0 auto; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="calendar-box">
+            <h2><i class="fas fa-calendar-alt"></i> Kalender</h2>
+            <div id="fc-calendar"></div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script src="kalendar.js"></script>
+</body>
+</html>
